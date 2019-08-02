@@ -16,7 +16,7 @@ class Add(MethodView):
         """
         model = gbmodel.get_model()
         model.insert(request.form['title'],
-                     request.form['author'], 
+                     request.form['author'],
                      request.form['ingredient'],
                      request.form['time'],
                      request.form['skill'],

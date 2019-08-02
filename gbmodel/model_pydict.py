@@ -8,9 +8,9 @@ class model(Model):
         """ init the recipes dictionary and then calls function to insert hard-coded data to dictionary"""
         self.recipeset = {}
         self.hardcoded()
-        
+
     def select(self):
-        """ 
+        """
         Returns recipeset list of dictionary
         Each list in recipeset contains: title, author, ingredient, time, skill, description
         :return: List of lists

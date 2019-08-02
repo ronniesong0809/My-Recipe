@@ -7,7 +7,7 @@ from .Model import Model
 class model(Model):
     def __init__(self):
         self.recipeset = []
-        self.hardcoded()        
+        self.hardcoded()
 
     def select(self):
         """

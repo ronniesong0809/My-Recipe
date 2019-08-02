@@ -17,10 +17,10 @@ class Index(MethodView):
         lang2='ru'
 
         recipes = [dict(title=row[0],
-                        author=row[1], 
+                        author=row[1],
                         ingredient=row[2],
-                        time=row[3], 
-                        skill=row[4], 
+                        time=row[3],
+                        skill=row[4],
                         description=row[5],
                         url=row[6],
                         url_description=self.detect_labels_uri(row[6]),
@@ -42,20 +42,20 @@ class Index(MethodView):
         return render_template('index.html', rps=recipes)
 
     # google cloud translate api
-    def translate(self,text,target):        
+    def translate(self,text,target):
         translate_client = translate.Client()
-        
+
         result = translate_client.translate(text,target_language=target)
 
         return result['translatedText']
-    
+
     # google cloud translate api
     def detect_labels_uri(self,uri):
-    
+
         if not uri:
             return "['No label']"
-            
-        else:            
+
+        else:
             client = vision.ImageAnnotatorClient()
 
             image = vision.types.Image()
@@ -69,34 +69,34 @@ class Index(MethodView):
                 label_descriptions.append(label.description)
 
             return label_descriptions
-    
+
     # nutritionix api
     def nutritionix(self, ingredient):
         # url
         url = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
-        
+
         # header
         headers = {"Content-Type":"application/json", "x-app-id":"ec32a59d", "x-app-key":"d13ec612386c8937ed513fc295ad10e3"}
-        
+
         # body
         body = {"query":ingredient,"timezone": "US/Eastern"}
-        
+
         # response object
         response = requests.post(url, headers= headers, json = body)
-        
+
         # returns a promise that resolves with the result of parsing the body text as json 
         return response.json()
-    
+
     # yelp api
     def yelpSearch(self, title):
-        # url 
+        # url
         url = 'https://api.yelp.com/v3/businesses/search?term=' + title + '&location=portland&limit=3'
-        
-        # header 
+
+        # header
         headers={'Authorization': "Bearer T7zsAtPs89Md-UJVSSUpzGGPxljUmlU914d994tSlhL5v98RnTEmDvPEfHgwwNp5FooWOpWp45ciFSX2ON8HnDFRbojwEBMbyW1SslpL9VcL3o2gAwvLTXFBW-7rW3Yx"}
-        
+
         # response object
         response = requests.get(url, headers=headers)
-        
+
         # returns a promise that resolves with the result of parsing the body text as json 
         return response.json()
