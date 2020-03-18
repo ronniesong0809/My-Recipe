@@ -76,7 +76,7 @@ class Index(MethodView):
         url = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
 
         # header
-        headers = {"Content-Type":"application/json", "x-app-id":"ec32a59d", "x-app-key":"d13ec612386c8937ed513fc295ad10e3"}
+        headers = {"Content-Type":"application/json", "x-app-id":"ec32a59d", "x-app-key":"WjvLmBc_4m09tUZwI0jpQQ"}
 
         # body
         body = {"query":ingredient,"timezone": "US/Eastern"}
@@ -93,7 +93,7 @@ class Index(MethodView):
         url = 'https://api.yelp.com/v3/businesses/search?term=' + title + '&location=portland&limit=3'
 
         # header
-        headers={'Authorization': "Bearer T7zsAtPs89Md-UJVSSUpzGGPxljUmlU914d994tSlhL5v98RnTEmDvPEfHgwwNp5FooWOpWp45ciFSX2ON8HnDFRbojwEBMbyW1SslpL9VcL3o2gAwvLTXFBW-7rW3Yx"}
+        headers={'Authorization': "Bearer 4mP1pGrwFpbuMXBoiIMkrGRA6WmtaU9boasPYOT-bvEZ0bi7xTl7lr6uXHORbbvWG4CsJwUY-bRLCvTRqyCYmKLKhWZ3Hsg7fWiKIAXM3BkETbtGtD7_8U-afM3uXXYx"}
 
         # response object
         response = requests.get(url, headers=headers)

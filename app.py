@@ -1,12 +1,15 @@
 """
 A recipes flask app dervied from guestbook-v3 app
 """
+import os
 import flask
 from flask.views import MethodView
 from home import Home
 from index import Index
 from add import Add
 from remove import Remove
+
+port = int(os.environ.get("PORT", 5000))
 
 app = flask.Flask(__name__)
 
@@ -39,4 +42,4 @@ app.add_url_rule('/remove/',
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)
