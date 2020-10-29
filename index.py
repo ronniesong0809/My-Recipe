@@ -7,6 +7,7 @@ from google.cloud import translate
 from google.cloud import vision
 import requests
 import gbmodel
+import os
 
 class Index(MethodView):
     def get(self):
@@ -24,18 +25,18 @@ class Index(MethodView):
                         description=row[5],
                         url=row[6],
                         url_description=self.detect_labels_uri(row[6]),
-                        t_title=self.translate(row[0],lang1),
-                        t_author=self.translate(row[1],lang1),
-                        t_ingredient=self.translate(row[2],lang1),
-                        t_time=self.translate(row[3],lang1),
-                        t_skill=self.translate(row[4],lang1),
-                        t_description=self.translate(row[5],lang1),
-                        t2_title=self.translate(row[0],lang2),
-                        t2_author=self.translate(row[1],lang2),
-                        t2_ingredient=self.translate(row[2],lang2),
-                        t2_time=self.translate(row[3],lang2),
-                        t2_skill=self.translate(row[4],lang2),
-                        t2_description=self.translate(row[5],lang2),
+                        t_title=row[7],
+                        t_author=row[8],
+                        t_ingredient=row[9],
+                        t_time=row[10],
+                        t_skill=row[11],
+                        t_description=row[12],
+                        t2_title=row[0],
+                        t2_author=row[1],
+                        t2_ingredient=row[2],
+                        t2_time=row[3],
+                        t2_skill=row[4],
+                        t2_description=row[5],
                         nutrition = self.nutritionix(row[2]),
                         yelp = self.yelpSearch(row[0])) for row in model.select()]
 
@@ -76,7 +77,7 @@ class Index(MethodView):
         url = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
 
         # header
-        headers = {"Content-Type":"application/json", "x-app-id":"ec32a59d", "x-app-key":"WjvLmBc_4m09tUZwI0jpQQ"}
+        headers = {"Content-Type":"application/json", "x-app-id":os.environ.get("X_APP_ID"), "x-app-key":os.environ.get("X_APP_KEY")}
 
         # body
         body = {"query":ingredient,"timezone": "US/Eastern"}
@@ -93,7 +94,7 @@ class Index(MethodView):
         url = 'https://api.yelp.com/v3/businesses/search?term=' + title + '&location=portland&limit=3'
 
         # header
-        headers={'Authorization': "Bearer 4mP1pGrwFpbuMXBoiIMkrGRA6WmtaU9boasPYOT-bvEZ0bi7xTl7lr6uXHORbbvWG4CsJwUY-bRLCvTRqyCYmKLKhWZ3Hsg7fWiKIAXM3BkETbtGtD7_8U-afM3uXXYx"}
+        headers={'Authorization': os.environ.get("YELP_API_KEY")}
 
         # response object
         response = requests.get(url, headers=headers)

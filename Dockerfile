@@ -17,7 +17,7 @@ WORKDIR /app
 
 # Install the Python packages specified by requirements.txt into the container
 RUN pip install -r requirements.txt
-RUN export GOOGLE_APPLICATION_CREDENTIALS=my-recipe.json
+RUN export GOOGLE_APPLICATION_CREDENTIALS=myrecipemlapis.json
 
 # Set the program that is invoked upon container instantiation
 ENTRYPOINT ["python"]

@@ -26,7 +26,7 @@ class model(Model):
         try:
             cursor.execute("select count(rowid) from recipes")
         except sqlite3.OperationalError:
-            cursor.execute("create table recipes (title text, author text, ingredient text, time text, skill text, description, url text)")
+            cursor.execute("create table recipes (title text, author text, ingredient text, time text, skill text, description, url text, t_title text, t_author text, t_ingredient text, t_time text, t_skill text, t_description)")
         cursor.close()
 
     def select(self):
@@ -40,7 +40,7 @@ class model(Model):
         cursor.execute("SELECT * FROM recipes")
         return cursor.fetchall()
 
-    def insert(self, title, author, ingredient, time, skill, description, url):
+    def insert(self, title, author, ingredient, time, skill, description, url, t_title, t_author, t_ingredient, t_time, t_skill, t_description):
         """
         Inserts recipe into database
         :param title: String
@@ -53,10 +53,10 @@ class model(Model):
         :return: True
         :raises: Database errors on connection and insertion
         """
-        params = {'title':title, 'author':author, 'ingredient':ingredient, 'time':time, 'skill':skill, 'description':description, 'url':url}
+        params = {'title':title, 'author':author, 'ingredient':ingredient, 'time':time, 'skill':skill, 'description':description, 'url':url, 't_title':t_title, 't_author':t_author, 't_ingredient':t_ingredient, 't_time':t_time, 't_skill':t_skill, 't_description':t_description}
         connection = sqlite3.connect(DB_FILE)
         cursor = connection.cursor()
-        cursor.execute("insert into recipes (title, author, ingredient, time, skill, description, url) VALUES (:title, :author, :ingredient, :time, :skill, :description, :url)", params)
+        cursor.execute("insert into recipes (title, author, ingredient, time, skill, description, url, t_title, t_author, t_ingredient, t_time, t_skill, t_description) VALUES (:title, :author, :ingredient, :time, :skill, :description, :url, :t_title, :t_author, :t_ingredient, :t_time, :t_skill, :t_description)", params)
 
         connection.commit()
         cursor.close()
