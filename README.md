@@ -1,8 +1,14 @@
 # My Recipe
 
+[![Heroku](https://img.shields.io/badge/Heroku-deployed-blueviolet)](https://my-recipes-webapp.herokuapp.com)
+[![Website](https://img.shields.io/website?down_color=red&down_message=down&up_color=brightgreen&up_message=up&url=https%3A%2F%2Fmy-recipes-webapp.herokuapp.com%2F)](https://my-recipes-webapp.herokuapp.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ronniesong0809/my-recipe/blob/master/LICENSE)
+
 Copyright (c) 2018-2019 Ronnie Song
 
 An incremental construction of a scalable recipe website that utilizes Machine Learning APIs.
+
+Live Demo: [here](https://my-recipes-webapp.herokuapp.com)
 
 ## Tech Stack and Tools
 
